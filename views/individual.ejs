@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="/individualstyle.css">
+    <script src="https://kit.fontawesome.com/c8cd1b39ea.js" crossorigin="anonymous"></script>
+    <link href="//db.onlinewebfonts.com/c/73fedd912ba11f583a359ce4c2e742ed?family=Ninja+Naruto" rel="stylesheet"
+        type="text/css" />
+    <link rel="stylesheet" href="/star.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar_container">
+            <a href="/" id="navbar_logo"><i class="fa-solid fa-user-ninja"></i> AnimeNinja</a>
+            <div class="navbar_toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar_menu">
+                <li class="navbar_item">
+                    <a href="/" class="navbar_links">
+                        Home
+                    </a>
+                </li>
+
+                <li class="navbar_item">
+                    <a href="/favorite" class="navbar_links">
+                        Favorites
+                    </a>
+                </li>
+
+
+                <li class="navbar_item">
+                    <a href="/index" class="navbar_links">
+                        Index
+                    </a>
+                </li>
+
+                <li class="navbar_item">
+                    <a href="/explore" class="navbar_links">
+                        Explore
+                    </a>
+                </li>
+
+
+
+
+                <% if (!currentUser) { %>
+
+                    <li class="navbar_item">
+                        <a href="/login" class="navbar_links">
+                            Login
+                        </a>
+                    </li>
+
+                    <li class="navbar_btn">
+                        <a href="/register" class="button">
+                            Sign Up
+                        </a>
+                    </li>
+
+                    <% }else { %>
+
+                        <li class="navbar_item">
+                            <a href="/logout" class="navbar_links">
+                                Logout
+                            </a>
+                        </li>
+                        <% } %>
+            </ul>
+
+        </div>
+
+    </nav>
+
+    <% if (success && success.length) { %>
+        <div class="flash_alert">
+            <%= success %>
+                <button class="flash_alertbtn">
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+        </div>
+        <% } %>
+            <% if (error && error.length) { %>
+                <div class="flash_alert_error">
+                    <%= error %>
+                        <button class="flash_alert_errorbtn"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <% } %>
+
+
+
+
+
+
+                    <div class="container">
+                        <h1>
+                            <%=single.name%>
+                        </h1>
+                        <img src="<%=single.picture%>" alt="<%=single.link%>">
+
+                        <p>
+                            Ranking: <%=single.rank%>
+                        </p>
+                        <form action="/index/<%= single._id %>/fav" method="post" class="fav">
+                            <button><i class="fa-solid fa-heart fa-2x"></i></button>
+                        </form>
+
+                        <p>
+                            Synopsis: <%=single.synopsis%>
+                        </p>
+                        <p>Genre: <%for (const [i, value] of category.entries()) {%>
+                                <%if (i==category.length - 1) {%>
+                                    <span>
+                                        <%=value%>
+                                    </span>
+
+                                    <%} else {%>
+
+                                        <span>
+                                            <%=value%>,
+                                        </span>
+
+                                        <%}%>
+
+                                            <% } %>
+
+
+                        </p>
+
+                    </div>
+                    <br>
+
+                    <% if (currentUser) {%>
+                        <h2>Leave a Review</h2>
+                        <br>
+
+                        <form class="main_form" action="/index/<%= single._id %>/reviews" method="post">
+                            <!-- <div class="rating">
+                                <label for="rating">Rating:</label>
+                                <input type="range" name="review[rating]" id="rating" min="1" max="5">
+                            </div> -->
+                            <fieldset class="starability-basic">
+
+                                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1"
+                                    checked aria-label="No rating." />
+                                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                                <label for="first-rate1" title="Terrible">1 star</label>
+                                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                                <label for="first-rate2" title="Not good">2 stars</label>
+                                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                                <label for="first-rate3" title="Average">3 stars</label>
+                                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                                <label for="first-rate4" title="Very good">4 stars</label>
+                                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                                <label for="first-rate5" title="Amazing">5 stars</label>
+                            </fieldset>
+                            <div class="review">
+                                <label for="body">Review:</label>
+                                <textarea name="review[body]" id="body" cols="30" rows="3">Default Value</textarea>
+
+                            </div>
+
+                            <button class="submit_btn">Submit</button>
+                        </form>
+                        <hr>
+                        <% } %>
+
+
+                            <% for (let review of single.reviews) { %>
+
+                                <div class="each_review">
+
+
+                                    <h3>
+                                        <%= review.author.username %>
+                                    </h3>
+
+                                    <p class="starability-result" data-rating="<%= review.rating %>">
+                                        Rated: <%= review.rating %> stars
+                                    </p>
+
+                                    <p>Review: <%= review.body %>
+                                    </p>
+                                    <% if (currentUser && review.author.equals(currentUser._id)) { %>
+                                        <form action="/index/<%= single._id %>/reviews/<%= review._id %>?_method=DELETE"
+                                            method="post">
+                                            <button>Delete</button>
+                                        </form>
+                                        <% } %>
+                                </div>
+                                <% } %>
+
+
+
+
+
+
+
+                                    <script src="/navbarcode.js"></script>
+
+</body>
+
+</html>

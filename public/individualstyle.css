@@ -1,0 +1,113 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    letter-spacing: 2px;
+    word-spacing: 5px;
+    margin: 20px 20px;
+
+}
+
+.container p {
+    margin-top: 15px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.container h1 {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.container img {
+    font-family: 'Quicksand', sans-serif;
+    margin-top: 10px;
+}
+
+.container span {
+    font-family: 'Quicksand', sans-serif;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.main_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid white;
+    margin-bottom: 20px;
+    font-family: 'Quicksand', sans-serif;
+
+}
+
+.main_form button {
+    margin-top: 10px;
+}
+
+.rating {
+    margin: 10px 0;
+}
+
+.review {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0;
+
+}
+
+.review textarea {
+    padding: 5px 5px;
+    border: 2px solid white;
+    caret-color: white;
+    background-image: linear-gradient(to top, #d44234 0%, #d1db42 100%);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    margin: 0 10px;
+    letter-spacing: 2px;
+    word-spacing: 5px;
+    font-family: 'Quicksand', sans-serif;
+
+}
+
+.each_review {
+    margin: 10px 10px;
+}
+
+
+.each_review p {
+    margin: 10px 0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+fieldset {
+    margin-top: 10px;
+}
+
+
+.fav {
+    margin: 15px 0;
+}
+
+h3 {
+    font-family: 'Quicksand', sans-serif;
+}
+
+label {
+    font-family: 'Quicksand', sans-serif;
+}
+
+button {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.each_review {
+    margin: 20px 10px;
+}
